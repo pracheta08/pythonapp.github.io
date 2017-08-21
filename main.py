@@ -39,7 +39,7 @@ class Product(ndb.Model):
      Address = ndb.TextProperty(indexed=True)
      Phone = ndb.IntegerProperty(indexed=True)
      Gender = ndb.StringProperty(indexed=True)
-Feedback = ndb.TextProperty(indexed=True)
+     Feedback = ndb.TextProperty(indexed=True)
      
      when = ndb.DateTimeProperty(auto_now_add=True)
 	 
@@ -59,14 +59,14 @@ class MainHandler(webapp2.RequestHandler):
      Address = self.request.get('address')
      Phone =  int(self.request.get('phone'))
      Gender = self.request.get('gender')
- Feedback = self.request.get('feedback')
+     Feedback = self.request.get('feedback')
      restaurant = Product()
      restaurant.Fname=Fname
      restaurant.Lname=Lname
      restaurant.Address=Address
      restaurant.Phone=Phone
      restaurant.Gender=Gender
-	 restaurant.Feedback=Feedback
+     restaurant.Feedback=Feedback
      restaurant.put()
      self.redirect('/')
 	 
