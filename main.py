@@ -9,7 +9,9 @@ html = """
 <title>INFORMATION</title>
 </head>
   <body>
-    <form action = "/confirm" method = "post">
+  <center>
+  RESTAURANT FEEDBACK
+    <form action = "/confirm" class="center" method = "post">
         FirstName:
         <input type = "text" name = "names" required/><br>
         LastName:
@@ -21,10 +23,12 @@ html = """
         Gender:
       input type = "radio" name="gender" value = "Male" required/><br>
        input type = "radio" name="gender" value = "Female" required/><br>
+        Feedback:
+		<textarea name="feedback"  required></textarea>
       
         <input type = "submit" name = "submit" value = "SUBMIT">
         
-        </form>
+        </form></center>
    </body>
 </html> """  
    
@@ -34,7 +38,9 @@ class Product(ndb.Model):
      Lname = ndb.StringProperty(indexed=True)
      Address = ndb.TextProperty(indexed=True)
      Phone = ndb.IntegerProperty(indexed=True)
-     Gender = ndb.StringProperty(indexed=True)	 
+     Gender = ndb.StringProperty(indexed=True)
+Feedback = ndb.TextProperty(indexed=True)
+     
      when = ndb.DateTimeProperty(auto_now_add=True)
 	 
 	 
@@ -53,12 +59,14 @@ class MainHandler(webapp2.RequestHandler):
      Address = self.request.get('address')
      Phone =  int(self.request.get('phone'))
      Gender = self.request.get('gender')
+ Feedback = self.request.get('feedback')
      restaurant = Product()
      restaurant.Fname=Fname
      restaurant.Lname=Lname
      restaurant.Address=Address
      restaurant.Phone=Phone
      restaurant.Gender=Gender
+	 restaurant.Feedback=Feedback
      restaurant.put()
      self.redirect('/')
 	 
